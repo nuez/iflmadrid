@@ -1,0 +1,15 @@
+{
+  "name": "iflmadrid-static",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Static archive site for IFL Madrid — the international futsal league in Madrid since 1988.",
+  "scripts": {
+    "build": "tailwindcss -i ./src/input.css -o ./css/style.css --minify",
+    "dev": "tailwindcss -i ./src/input.css -o ./css/style.css --watch",
+    "serve": "python3 -m http.server 4000"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.1.11",
+    "tailwindcss": "^4.1.11"
+  }
+}

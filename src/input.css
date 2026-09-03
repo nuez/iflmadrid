@@ -1,0 +1,98 @@
+@import "tailwindcss";
+
+@source "../index.html";
+
+/* ---------------------------------------------------------------------------
+   IFL Madrid design tokens
+   Reds and amber sampled directly from the club logo; charcoal from the
+   original site's announcement band.
+   --------------------------------------------------------------------------- */
+@theme {
+  --color-flame: #e54028;
+  --color-brick: #c22d18;
+  --color-ember: #9c210f;
+  --color-amber: #e99300;
+  --color-amber-soft: #f6b845;
+  --color-ink: #17161a;
+  --color-slate: #444446;
+  --color-bone: #f6f3ef;
+  --color-whatsapp: #25d366;
+
+  --font-display: "Archivo Black", ui-sans-serif, sans-serif;
+  --font-sans: "Open Sans", ui-sans-serif, system-ui, sans-serif;
+
+  --shadow-lift: 0 18px 40px -20px rgb(23 22 26 / 0.45);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    /* keep anchor targets clear of the sticky bar */
+    scroll-padding-top: 5.5rem;
+  }
+
+  body {
+    @apply bg-bone font-sans text-slate antialiased;
+  }
+
+  ::selection {
+    @apply bg-amber text-ink;
+  }
+
+  :focus-visible {
+    @apply outline-2 outline-offset-3 outline-amber;
+  }
+}
+
+@layer components {
+  /* The logo's italic "IFL" is the whole identity — this slant echoes it. */
+  .slant {
+    transform: skewX(-9deg);
+  }
+  .unslant {
+    transform: skewX(9deg);
+  }
+
+  /* Chalked pitch-line texture for dark sections */
+  .pitch-lines {
+    background-image:
+      repeating-linear-gradient(
+        -9deg,
+        rgb(255 255 255 / 0.035) 0px,
+        rgb(255 255 255 / 0.035) 1px,
+        transparent 1px,
+        transparent 26px
+      );
+  }
+
+  .eyebrow {
+    @apply font-display text-[0.6875rem] tracking-[0.28em] uppercase;
+  }
+}
+
+@layer utilities {
+  /* Staggered entrance on load — one orchestrated moment, nothing scattered. */
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .rise {
+    animation: rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .rise {
+      animation: none;
+    }
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}
